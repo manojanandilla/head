@@ -31,6 +31,7 @@ import org.mifos.dto.domain.GLCodeDto;
 import org.mifos.dto.domain.GlDetailDto;
 import org.mifos.dto.domain.OfficeGlobalDto;
 import org.mifos.dto.domain.RolesActivityDto;
+import org.mifos.dto.domain.ViewOpeningBalanceDto;
 import org.mifos.dto.domain.ViewStageTransactionsDto;
 import org.mifos.dto.domain.ViewTransactionsDto;
 import org.mifos.security.util.UserContext;
@@ -142,4 +143,6 @@ public interface AccountingServiceFacade {
 	List<RolesActivityDto> multipleglloadRolesActivity();
 	//journal
 	List<RolesActivityDto> jvloadRolesActivity();
+	
+	List<ViewOpeningBalanceDto> getOpeningBalanceTransaction();
 }

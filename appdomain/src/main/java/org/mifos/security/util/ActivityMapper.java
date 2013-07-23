@@ -208,6 +208,7 @@ public class ActivityMapper {
         parseActionSecurity(getCoaBranchMappingSecurity());
         parseActionSecurity(getVoucherBranchMappingSecurity());
         parseActionSecurity(getconsolidatedTransactionSecurity());
+        parseActionSecurity(getViewOpeningBalanceActionSecurity());
     }
 
     private ActionSecurity getMigrateSecurity() {
@@ -1855,4 +1856,13 @@ public class ActivityMapper {
         
         return activityId;
     }
+    
+    private ActionSecurity getViewOpeningBalanceActionSecurity() {
+        ActionSecurity security = new ActionSecurity("viewOpeningBalanceAction");
+        security.allow("load", SecurityConstants.VIEW_OPENBALANCE);
+
+        return security;
+    }
+    
+    
 }

@@ -131,6 +131,18 @@ public GlBalancesBO() {
 	   this.transactionCreditSum=transactionCreditSum;
 	   this.closingBalance=closingBalance;
      }
+   
+   public GlBalancesBO(int glBalancesId,int officeLevel,String officeId,String glCodeValue,BigDecimal openingBalance,BigDecimal transactionDebitSum,
+		   BigDecimal transactionCreditSum){
+	   this.glBalancesId=glBalancesId;
+	   this.officeLevel=officeLevel;
+	   this.officeId=officeId;
+	   this.glCodeValue=glCodeValue;
+	   this.openingBalance=openingBalance;
+	   this.transactionDebitSum=transactionDebitSum;
+	   this.transactionCreditSum=transactionCreditSum;
+	   
+     }
 
 
 

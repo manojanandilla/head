@@ -43,6 +43,7 @@ import org.mifos.dto.domain.MisProcessingTransactionsDto;
 import org.mifos.dto.domain.OfficeGlobalDto;
 import org.mifos.dto.domain.RolesActivityDto;
 import org.mifos.dto.domain.RowCount;
+import org.mifos.dto.domain.ViewOpeningBalanceDto;
 import org.mifos.dto.domain.ViewStageTransactionsDto;
 import org.mifos.dto.domain.ViewTransactionsDto;
 import org.mifos.framework.exceptions.PersistenceException;
@@ -625,5 +626,16 @@ public class AccountingDaoHibernate extends LegacyGenericDao implements
 					"ChartOfAccountsForMifos.RolesActivityId", queryparameters,
 					RolesActivityDto.class);
 			return rolesactivity;
+		}
+		
+		
+		@Override
+		public List<ViewOpeningBalanceDto> viewOpeningBalancesBO() {
+			final Map<String, Object> queryparameters = new HashMap<String, Object>();
+
+			final List<ViewOpeningBalanceDto> glBalancesBOs = 
+					executeNamedQueryWithResultTransformer("ChartOfAccountsForMifos.ViewOpeningBalance",
+					queryparameters, ViewOpeningBalanceDto.class);
+			return glBalancesBOs;
 		}
 }

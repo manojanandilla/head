@@ -1841,6 +1841,47 @@ SELECT m.transaction_master_id AS transactionNo,
                    select rc.activity_id as activityid ,rc.role_id as roleid from roles_activity rc where rc.activity_id=:ACTIVITYID
         ]]>
 	</sql-query>
+	
+	<sql-query name="ChartOfAccountsForMifos.ViewOpeningBalance">
+		<return-scalar column="glBalancesId" type="int" />
+		<return-scalar column="officeHierarchy" type="string" />
+		<return-scalar column="glCodeValue" type="string" />
+		<return-scalar column="openingBalance" type="big_decimal" />
+		<return-scalar column="transactionDebitSum" type="big_decimal" />
+		<return-scalar column="transactionCreditSum" type="big_decimal" />
+		<return-scalar column="closingBalance" type="big_decimal" />
+
+        <![CDATA[
+			select glb.glbalances_id as glBalancesId,ol.officeLevel as officeHierarchy,
+			( SELECT coa_name FROM coa a, gl_code b WHERE a.glcode_id = b.glcode_id AND glcode_value= glb.glcode_value)
+			as glCodeValue,glb.openning_bal as openingBalance,
+			glb.transaction_dr_sum as transactionDebitSum ,glb.transaction_cr_sum as transactionCreditSum,glb.closing_bal as closingBalance
+			from acc_glbalances glb,(SELECT global_cust_num global_num,
+               CASE customer_level_id
+                  WHEN 2 THEN 'Group'
+                  WHEN 3 THEN 'Center'
+                  ELSE 'None'
+               END AS officelevel,
+               display_name
+          FROM customer c
+        WHERE customer_level_id IN (2, 3)
+        union all
+        
+SELECT global_office_num global_num,
+               CASE office_level_id
+                  WHEN 1 THEN 'Head Office'
+                  WHEN 2 THEN 'Regional Office'
+                  WHEN 3 THEN 'Divisional Office'
+                  WHEN 4 THEN 'Area Office'
+                  WHEN 5 THEN 'Branch Office'
+                  ELSE 'None'
+               END AS officeLevel,
+               display_name
+          FROM office o) ol
+          where ol.global_num = glb.office_level;			
+			
+		]]>
+	</sql-query>
 
 
 </hibernate-mapping>

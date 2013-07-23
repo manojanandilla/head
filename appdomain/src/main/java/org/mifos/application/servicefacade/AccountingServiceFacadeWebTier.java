@@ -26,8 +26,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
-
 import org.mifos.application.accounting.business.CoaBranchBO;
 import org.mifos.application.accounting.business.FinancialYearBO;
 import org.mifos.application.accounting.business.GlBalancesBO;
@@ -46,6 +44,7 @@ import org.mifos.dto.domain.MisProcessingTransactionsDto;
 import org.mifos.dto.domain.OfficeGlobalDto;
 import org.mifos.dto.domain.RolesActivityDto;
 import org.mifos.dto.domain.RowCount;
+import org.mifos.dto.domain.ViewOpeningBalanceDto;
 import org.mifos.dto.domain.ViewStageTransactionsDto;
 import org.mifos.dto.domain.ViewTransactionsDto;
 import org.mifos.framework.exceptions.PersistenceException;
@@ -661,6 +660,16 @@ public class AccountingServiceFacadeWebTier implements AccountingServiceFacade {
 			rolesactivityDtos = accountingDao.findrolesActivity(312);
 
 			return rolesactivityDtos;
+		}
+
+
+
+		@Override
+		public List<ViewOpeningBalanceDto> getOpeningBalanceTransaction() {
+			
+			List<ViewOpeningBalanceDto> glBalances = null;
+			glBalances = accountingDao.viewOpeningBalancesBO();
+			return glBalances;
 		}
 
 

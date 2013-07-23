@@ -56,17 +56,18 @@
 			type="org.mifos.accounting.struts.actionform.OpenBalanceActionForm" />
 		<form-bean name="processaccountingtransactionsactionform"
 			type="org.mifos.accounting.struts.actionform.ProcessAccountingTransactionsActionForm" />
-			<form-bean name="viewtransactionstageactionform"
+		<form-bean name="viewtransactionstageactionform"
 			type="org.mifos.accounting.struts.actionform.ViewStageTransactionActionForm" />
-			<form-bean name="interofficetransferactionform"
+		<form-bean name="interofficetransferactionform"
 			type="org.mifos.accounting.struts.actionform.InterOfficeTransferActionForm" />
 
-			<form-bean name="coabranchmappingform"
+		<form-bean name="coabranchmappingform"
 			type="org.mifos.accounting.struts.actionform.CoaBranchMappingActionForm" />
-			<form-bean name="voucherbranchmappingform"
+		<form-bean name="voucherbranchmappingform"
 			type="org.mifos.accounting.struts.actionform.VoucherBranchMappingActionForm" />
-			<form-bean name="consolidatedtransactionactionform"
+		<form-bean name="consolidatedtransactionactionform"
 			type="org.mifos.accounting.struts.actionform.ConsolidatedTransactionActionForm" />
+		
     </form-beans>
 
     <action-mappings>
@@ -566,6 +567,15 @@
             <forward name="printPaymentReceipt" path="printPaymentReceipt.ftl" redirect="true"/>
         </action>
        <!-- Group Loan end -->
+       
+       		<action path="/viewOpeningBalanceAction"
+			type="org.mifos.accounting.struts.action.ViewOpeningBalancesAction" name="openbalanceactionform"
+			parameter="method" validate="true"
+			input="/pages/application/loan/jsp/ViewOpeningBalanceTransactions.jsp" scope="session">
+			<forward name="load_success"
+				path="/pages/application/loan/jsp/ViewOpeningBalanceTransactions.jsp" />
+
+		</action>
     </action-mappings>
 
 <!-- 

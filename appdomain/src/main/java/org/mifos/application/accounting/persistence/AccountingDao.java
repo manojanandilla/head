@@ -36,6 +36,7 @@ import org.mifos.dto.domain.MisProcessingTransactionsDto;
 import org.mifos.dto.domain.OfficeGlobalDto;
 import org.mifos.dto.domain.RolesActivityDto;
 import org.mifos.dto.domain.RowCount;
+import org.mifos.dto.domain.ViewOpeningBalanceDto;
 import org.mifos.dto.domain.ViewStageTransactionsDto;
 import org.mifos.dto.domain.ViewTransactionsDto;
 import org.mifos.framework.exceptions.PersistenceException;
@@ -143,5 +144,6 @@ public interface AccountingDao {
 	//consolidated
 
 	List<ViewStageTransactionsDto> findConsolidatedAccountingTransactions(String branchoffice);
+	List<ViewOpeningBalanceDto> viewOpeningBalancesBO();
 
 }
